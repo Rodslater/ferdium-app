@@ -6,10 +6,10 @@ import { ipcRenderer } from 'electron';
 import { autorun } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { useEffect, useRef, useState } from 'react';
-import { state as basicAuthState } from '../basicAuth/store';
-import { state as quickSwitchState } from '../quickSwitch/store';
 import type ServiceModel from '../../models/Service';
 import type { RealStores } from '../../stores';
+import { state as basicAuthState } from '../basicAuth/store';
+import { state as quickSwitchState } from '../quickSwitch/store';
 import { HALLOY_IPC, type HalloyBounds } from './constants';
 
 // electron-react-titlebar renders this element only while a menu is open.
