@@ -109,6 +109,12 @@ win:
     publisherName: ["Ferdium Contributors", "Ambroise Grau"]
   # Remove the verification for a signature to allow auto-update without signed certificate
   verifyUpdateCodeSignature: false
+  # Halloy (IRC service). Built for x64 only: put halloy.exe in ./halloy-bin
+  # before packaging (see src/features/halloy/main.ts).
+  extraResources:
+    - from: ./halloy-bin
+      to: halloy
+      filter: ["halloy.exe"]
 
 linux:
   icon: ./build-helpers/images/icons

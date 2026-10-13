@@ -31,6 +31,7 @@ allowBuilds:
   es5-ext: true
   esbuild: true
   fast-folder-size: true
+  koffi: true
   macos-notification-state: true
   macos-notification-state@https://codeload.github.com/ferdium/macos-notification-state/tar.gz/7d740bcea260feb08197bd210912133e72853d93: true
   node-mac-permissions: true
@@ -38,3 +39,9 @@ allowBuilds:
   sqlite3: true
 
 optimisticRepeatInstall: false
+
+# O projeto mora num disco exFAT, que não tem symlink: sem estas três linhas a
+# instalação falha com "Failed to create symlink ... Função incorreta".
+nodeLinker: hoisted
+symlink: false
+packageImportMethod: copy

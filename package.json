@@ -91,6 +91,7 @@
     "immutable": "4.3.7",
     "jsonwebtoken": "9.0.2",
     "jss": "10.10.0",
+    "koffi": "3.3.3",
     "languagedetect": "2.0.0",
     "lodash": "4.17.21",
     "macos-version": "5.2.1",

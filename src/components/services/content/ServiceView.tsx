@@ -9,6 +9,8 @@ import {
 } from 'react-intl';
 import TopBarProgress from 'react-topbar-progress-indicator';
 import { CUSTOM_WEBSITE_RECIPE_ID } from '../../../config';
+import HalloyView from '../../../features/halloy/HalloyView';
+import { HALLOY_RECIPE_ID } from '../../../features/halloy/constants';
 import WebControlsScreen from '../../../features/webControls/containers/WebControlsScreen';
 import type ServiceModel from '../../../models/Service';
 import type { RealStores } from '../../../stores';
@@ -118,6 +120,20 @@ class ServiceView extends Component<IProps, IState> {
     const statusBar = this.state.statusBarVisible ? (
       <StatusBarTargetUrl text={this.state.targetUrl} />
     ) : null;
+
+    // The IRC service has no webview: Halloy is a native window placed over
+    // this area. Hibernation and the loading/error overlays do not apply.
+    if (service.recipe.id === HALLOY_RECIPE_ID) {
+      return (
+        <div
+          className={webviewClasses}
+          data-name={service.name}
+          style={{ order: service.order }}
+        >
+          {service.isEnabled && <HalloyView service={service} />}
+        </div>
+      );
+    }
 
     return (
       <div

@@ -389,3 +389,6 @@ server*.log
 
 # env
 .envrc
+
+# Halloy binary embedded by the IRC service; built separately (GPL-3.0).
+/halloy-bin/

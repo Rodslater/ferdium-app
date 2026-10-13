@@ -1,4 +1,5 @@
 import type { BrowserWindow } from 'electron';
+import halloy from '../../features/halloy/main';
 import type TrayIcon from '../../lib/Tray';
 import appIndicator from './appIndicator';
 // eslint-disable-next-line import/no-cycle
@@ -29,4 +30,5 @@ export default (params: {
   languageDetect();
   dnd();
   focusState(params);
+  halloy(params);
 };
