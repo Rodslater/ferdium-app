@@ -1276,7 +1276,7 @@ export default class ServicesStore extends TypedStore {
   _updateWindowTitleReaction() {
     const service = this.active;
     if (service) {
-      document.title = `Ferdium - ${service.name}${
+      document.title = `RodsHub - ${service.name}${
         service.dialogTitle ? ` - ${service.dialogTitle}` : ''
       }${service.pageTitle ? ` - ${service.pageTitle}` : ''}`;
     } else {

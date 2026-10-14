@@ -551,7 +551,13 @@ export const FILE_SYSTEM_SETTINGS_TYPES = ['app', 'proxy', 'shortcuts'];
 export const LOCAL_SERVER = 'You are using Ferdium without a server';
 export const SERVER_NOT_LOADED = 'Ferdium::SERVER_NOT_LOADED';
 
-export const ALLOWED_PROTOCOLS = ['https:', 'http:', 'ftp:', 'ferdium:'];
+export const ALLOWED_PROTOCOLS = [
+  'https:',
+  'http:',
+  'ftp:',
+  'ferdium:',
+  'rodshub:',
+];
 
 export const DEFAULT_TODOS_WIDTH = 300;
 export const TODOS_MIN_WIDTH = 200;

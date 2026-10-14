@@ -2,7 +2,7 @@ directories:
   app: ./build
   output: ./out
 
-appId: "org.ferdium.ferdium-app"
+appId: "com.rodslater.rodshub"
 
 electronFuses:
   enableEmbeddedAsarIntegrityValidation: true
@@ -10,6 +10,9 @@ electronFuses:
 
 publish:
   provider: github
+  # Updates come from the RodsHub fork; the official Ferdium releases have no IRC.
+  owner: Rodslater
+  repo: ferdium-app
 
 snapcraft:
   base: core24
@@ -35,7 +38,7 @@ nsis:
 
 portable:
   artifactName: "${productName}-${os}-Portable-${version}-${arch}.${ext}"
-  unpackDirName: "Ferdium-Unpacked"
+  unpackDirName: "RodsHub-Unpacked"
 
 dmg:
   background: ./build-helpers/images/dmgInstaller.tiff
@@ -63,8 +66,8 @@ rpm:
 afterSign: ./build-helpers/notarize.js
 
 protocols:
-  name: Ferdium
-  schemes: [ferdium]
+  name: RodsHub
+  schemes: [rodshub]
 
 asarUnpack:
   - ./recipes
@@ -96,14 +99,12 @@ mac:
 win:
   artifactName: "${productName}-${os}-Installer-${version}-${arch}.${ext}"
   icon: ./build-helpers/images/icon.ico
+  # x64 only: halloy.exe in ./halloy-bin is built for x64.
   target:
     - target: nsis
-      arch: [x64, ia32, arm64]
+      arch: [x64]
     - target: portable
-      arch: [x64, ia32, arm64]
-    # Temporary ARM64 ZIP build
-    - target: zip
-      arch: [arm64]
+      arch: [x64]
   # The name of the CN appearing in the certificate must be present in the publisherName list below
   signtoolOptions:
     publisherName: ["Ferdium Contributors", "Ambroise Grau"]

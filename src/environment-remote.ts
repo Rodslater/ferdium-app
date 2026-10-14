@@ -77,4 +77,4 @@ export const API_VERSION: string = 'v1';
 export const WS_API: string = wsApi;
 export const WEBSITE: string = web;
 // For deeplink protocol: 'ferdium' or 'ferdium-dev' if we want '{DEEPLINK_PROTOCOL_CLIENT}://'
-export const protocolClient = isDevMode ? 'ferdium-dev' : 'ferdium';
+export const protocolClient = isDevMode ? 'rodshub-dev' : 'rodshub';
