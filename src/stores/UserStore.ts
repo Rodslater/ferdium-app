@@ -7,8 +7,9 @@ import moment from 'moment';
 import type { Stores } from '../@types/stores.types';
 import type { Actions } from '../actions/lib/actions';
 import type { ApiInterface } from '../api';
-import { TODOS_PARTITION_ID } from '../config';
+import { LOCAL_SERVER, TODOS_PARTITION_ID } from '../config';
 import { isDevMode } from '../environment-remote';
+import serverlessLogin from '../helpers/serverless-helpers';
 import CachedRequest from './lib/CachedRequest';
 import Request from './lib/Request';
 import TypedStore from './lib/TypedStore';
@@ -312,6 +313,19 @@ export default class UserStore extends TypedStore {
         setTimeout(() => {
           this._tokenLogin(token);
         }, 1000);
+      }
+    } else if (
+      !this.isLoggedIn &&
+      this.stores.settings.all.app.server === LOCAL_SERVER
+    ) {
+      // RodsHub skips the welcome screen (Ferdium account, signup, server
+      // choice) and logs into the local server itself. The token only exists
+      // once the local server is up; logging in earlier fails.
+      if (
+        this.stores.requests.localServerToken &&
+        !this.loginRequest.isExecuting
+      ) {
+        serverlessLogin(this.actions);
       }
     } else if (!this.isLoggedIn && !currentRoute.includes(this.BASE_ROUTE)) {
       router.push(this.WELCOME_ROUTE);

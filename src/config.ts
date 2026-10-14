@@ -610,7 +610,9 @@ export const DEFAULT_APP_SETTINGS = {
   enableGlobalHideShortcut: false,
 
   // Ferdium specific options
-  server: LIVE_FERDIUM_API,
+  // RodsHub has no accounts: it always starts on the local server (the
+  // "use without an account" mode), see UserStore._requireAuthenticatedUser.
+  server: LOCAL_SERVER,
   predefinedTodoServer: TODO_TODOIST_URL,
   autohideMenuBar: false,
   isLockingFeatureEnabled: false,

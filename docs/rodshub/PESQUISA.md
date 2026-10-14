@@ -374,6 +374,34 @@ ELECTRON_IS_DEV=0 APPDATA="<pasta de perfil>" node_modules/electron/dist/electro
 - Os testes registram o protocolo no Windows apontando para o Electron de
   desenvolvimento; remover as chaves em `HKCU\Software\Classes` ao terminar.
 
+### Sem conta do Ferdium
+
+O Ferdium abre numa tela que oferece criar conta no "Servidor Ferdium"
+(nuvem deles, para sincronizar a lista de serviços) ou usar sem conta. No
+RodsHub isso confundia a marca, então o app abre direto no modo local:
+servidor padrão `LOCAL_SERVER` em `src/config.ts` e login automático em
+`UserStore._requireAuthenticatedUser`, que espera o token do servidor local
+existir antes de logar. Testado com perfil novo: abre direto na área de
+serviços.
+
+A sincronização foi descartada: leva só a lista de serviços (logins e
+sessões não vão junto), depende do servidor de terceiros e exige conta lá.
+Se um dia precisar: exportar e importar a configuração (menu Ajuda) ou um
+`ferdium-server` próprio (MIT) no EasyPanel.
+
+### Por que não as recipes de IRC que o Ferdium já tem
+
+| | IRCCloud (recipe) | Kiwi IRC (recipe) | Halloy no RodsHub |
+|---|---|---|---|
+| Onde a conexão acontece | Servidores da IRCCloud | Gateway do kiwiirc.com | No PC, direto no servidor |
+| Conversas passam por terceiros | Sim | Sim | Não |
+| Conta e custo | Conta na IRCCloud, serviço pago com plano gratuito limitado | Sem conta | Sem conta, grátis |
+| chathistory e multiline do RodsChat | Sim | Não | Sim, testado |
+| Projeto ativo | Comercial | Parado desde 2023 | 530 commits em 90 dias |
+
+As duas são só uma aba web para um serviço de terceiros: falham nos
+requisitos de rodar local e sem terceiros, e o Kiwi também no IRCv3.
+
 ## Problemas abertos no Ferdium que tocam os serviços pedidos
 
 Todos relatados em macOS; não confirmados no Windows.
